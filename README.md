@@ -6,8 +6,6 @@ Manage your SSH-Aliases via Terminal.
 
 `composer global require vanderb/flex-ssh`
 
-## First Steps
-
 ### Install
 
 To install required files and configs just run `flex-ssh install`.
