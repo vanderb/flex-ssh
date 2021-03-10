@@ -2,12 +2,12 @@
     "name": "vanderb/flex-ssh",
     "description": "Mange ssh-aliases via terminal.",
     "keywords": ["ssh", "console", "cli"],
-    "homepage": "https://github.com/vanderb/flex",
+    "homepage": "https://github.com/vanderb/flex-ssh",
     "type": "project",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/vanderb/flex/issues",
-        "source": "https://github.com/vanderb/flex"
+        "issues": "https://github.com/vanderb/flex-ssh/issues",
+        "source": "https://github.com/vanderb/flex-ssh"
     },
     "authors": [
         {
