@@ -29,7 +29,7 @@ List all aliases by specific host: `flex-ssh ls --host={HOST}`
 
 ### Make
 
-To create new alias: `flex-ssh make myAlias`
+To create new alias: `flex-ssh make {ALIAS}`
 
 Create new alias with direct options: `flex-ssh make {ALIAS} --host={HOST} --user={USER} --port={PORT}`
 
