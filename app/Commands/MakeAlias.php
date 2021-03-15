@@ -50,7 +50,7 @@ class MakeAlias extends Command
             }
         }
 
-        if (!$host) {
+        if (!isset($host)) {
             $host = $this->option('host') ?: $this->ask('Host');
 
             if (!$host) {
@@ -59,7 +59,7 @@ class MakeAlias extends Command
             }
         }
 
-        if (!$user) {
+        if (!isset($user)) {
             $user = $this->option('user') ?: $this->ask('User');
             if (!$user) {
                 $this->warn('Please define a user.');
