@@ -20,18 +20,21 @@ class ConfigService
     {
         $this->aliases = collect();
         $aliases = explode("\n\n", $this->disk->get('ssh_alias'));
+        $aliases = array_filter($aliases);
 
-        foreach ($aliases as $alias) {
-            $alias = explode(PHP_EOL, $alias);
-            $this->sshLine = collect();
-            array_map(function ($l) {
-                if ($trimmed = trim($l)) {
-                    list($key, $value) = explode(' ', $trimmed);
-                    $this->sshLine->put($key, $value);
-                    return $trimmed;
-                }
-            }, $alias);
-            $this->aliases->push($this->sshLine);
+        if (!empty($aliases)) {
+            foreach ($aliases as $alias) {
+                $alias = explode(PHP_EOL, $alias);
+                $this->sshLine = collect();
+                array_map(function ($l) {
+                    if ($trimmed = trim($l)) {
+                        list($key, $value) = explode(' ', $trimmed);
+                        $this->sshLine->put($key, $value);
+                        return $trimmed;
+                    }
+                }, $alias);
+                $this->aliases->push($this->sshLine);
+            }
         }
 
         return $this->aliases;
@@ -88,9 +91,9 @@ class ConfigService
     protected function saveAliasList($aliases)
     {
         $aliases = $aliases->sortBy('Host')->map(function ($alias) {
-            return "Host {$alias->get('Host')}\n" . "  HostName {$alias->get('HostName')}\n" . "  User {$alias->get('User')}\n" . "  Port {$alias->get('Port', 22)}";
+            return "Host {$alias->get('Host')}\n" . "  HostName {$alias->get('HostName')}\n" . "  User {$alias->get('User')}\n" . "  Port {$alias->get('Port', 22)}\n";
         });
 
-        return $this->disk->put('ssh_alias', implode("\n\n", $aliases->toArray()));
+        return $this->disk->put('ssh_alias', implode("\n", $aliases->toArray()));
     }
 }
